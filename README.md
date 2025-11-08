@@ -1,4 +1,4 @@
-# 📊 Apache Doris Data Analyst Project
+# Apache Doris Data Analyst Project
 
 ## Vue d'ensemble
 
@@ -28,11 +28,11 @@ Ce projet démontre l'utilisation d'**Apache Doris** pour réaliser des analyses
 
 ### Caractéristiques principales :
 
-- 🚀 **Performance exceptionnelle** : Requêtes sub-secondes sur des milliards de lignes
-- 📊 **OLAP natif** : Optimisé pour les analyses multidimensionnelles et les agrégations
-- ⚡ **Architecture MPP** : Traitement massivement parallèle pour une scalabilité horizontale
-- 🔄 **Support SQL standard** : Compatible avec la plupart des outils BI (Power BI, Tableau, etc.)
-- 🌐 **Haute concurrence** : Gère des milliers de requêtes simultanées
+- **Performance exceptionnelle** : Requêtes sub-secondes sur des milliards de lignes
+- **OLAP natif** : Optimisé pour les analyses multidimensionnelles et les agrégations
+- **Architecture MPP** : Traitement massivement parallèle pour une scalabilité horizontale
+- **Support SQL standard** : Compatible avec la plupart des outils BI (Power BI, Tableau, etc.)
+- **Haute concurrence** : Gère des milliers de requêtes simultanées
 
 ### Cas d'usage typiques :
 
