@@ -1,0 +1,84 @@
+version: '3.8'
+services:
+  doris-fe:
+    image: apache/doris:fe-3.0.8
+    container_name: doris-fe
+    hostname: doris-fe
+    environment:
+      - FE_SERVERS=fe1:172.20.0.10:9010
+      - FE_ID=1
+    ports:
+      - "8030:8030" # HTTP port pour l'interface web
+      - "9030:9030" # MySQL protocol port
+    volumes:
+      - doris-fe-data:/opt/apache-doris/fe/doris-meta
+      - doris-fe-log:/opt/apache-doris/fe/log
+    networks:
+      doris-network:
+        ipv4_address: 172.20.0.10
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8030/api/bootstrap"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  doris-be:
+    image: apache/doris:be-3.0.8
+    container_name: doris-be
+    hostname: doris-be
+    environment:
+      - FE_SERVERS=fe1:172.20.0.10:9010
+      - BE_ADDR=172.20.0.11:9050
+    ports:
+      - "8040:8040" # Backend HTTP port
+      - "9060:9060" # Backend RPC port
+    volumes:
+      - doris-be-data:/opt/apache-doris/be/storage
+      - doris-be-log:/opt/apache-doris/be/log
+    networks:
+      doris-network:
+        ipv4_address: 172.20.0.11
+    depends_on:
+      doris-fe:
+        condition: service_healthy
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15
+        /opt/apache-doris/be/bin/start_be.sh --daemon
+        mysql -h doris-fe -P 9030 -u root -e "ALTER SYSTEM ADD BACKEND 'doris-be:9050';"
+        tail -f /opt/apache-doris/be/log/be.INFO
+
+networks:
+  doris-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  doris-fe-data:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /mnt/c/Users/jean/Documents/apache-doris # ⚠️ Adapter l'emplacement à votre cas
+      o: bind
+  doris-fe-log:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /mnt/c/Users/jean/Documents/apache-doris # ⚠️ Adapter l'emplacement à votre cas
+      o: bind
+  doris-be-data:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /mnt/c/Users/jean/Documents/apache-doris # ⚠️ Adapter l'emplacement à votre cas
+      o: bind
+  doris-be-log:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /mnt/c/Users/jean/Documents/apache-doris # ⚠️ Adapter l'emplacement à votre cas
+      o: bind
