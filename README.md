@@ -10,7 +10,7 @@ Ce projet démontre l'utilisation d'**Apache Doris** pour réaliser des analyses
 
 ---
 
-## 📚 Table des matières
+## Table des matières
 
 - [Qu'est-ce qu'Apache Doris ?](#quest-ce-quapache-doris-)
 - [Architecture et concepts clés](#architecture-et-concepts-clés)
@@ -87,7 +87,7 @@ Apache Doris utilise une **architecture de calcul distribué** où plusieurs nœ
 
 ---
 
-## 💡 Types de requêtes supportées
+## Types de requêtes supportées
 
 Apache Doris excelle dans deux types d'opérations complémentaires :
 
@@ -141,9 +141,9 @@ Ce projet utilise **Apache Doris** pour analyser des données du **football inte
 
 ### Dataset
 
-- 📊 **Volume** : +1 million de lignes
-- 📅 **Période** : Plusieurs saisons de compétitions internationales
-- 📦 **Tables** :
+- **Volume** : +1 million de lignes
+- **Période** : Plusieurs saisons de compétitions internationales
+- **Tables** :
   - `players` : Informations sur les joueurs
   - `teams` : Équipes nationales
   - `matches` : Résultats des matchs
@@ -213,7 +213,7 @@ apache-doris-football-analysis/
 
 ---
 
-## 📝 Exemples de requêtes
+##  Exemples de requêtes
 
 ### Requête 1 : Top 10 buteurs de tous les temps
 
@@ -340,7 +340,7 @@ ORDER BY c.competition_name, year DESC, total_goals DESC;
 
 ---
 
-## 🚀 Améliorations futures
+##  Améliorations futures
 
 - [ ] Intégration avec Power BI / Tableau pour visualisations interactives
 - [ ] Ajout de données en temps réel (streaming)
@@ -350,7 +350,7 @@ ORDER BY c.competition_name, year DESC, total_goals DESC;
 
 ---
 
-## 📚 Ressources
+## Ressources
 
 - [Documentation officielle Apache Doris](https://doris.apache.org/docs/)
 - [GitHub Apache Doris](https://github.com/apache/doris)
